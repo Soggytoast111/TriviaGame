@@ -1,3 +1,4 @@
+//Holds all questions
 var questionarray = [
 "Question 1",
 "Question 2",
@@ -13,7 +14,7 @@ var questionarray = [
 "Question 12"
 ]
 
-
+//Holds possible answers for each question
 var a1 = [
 "Answer 1",
 "Answer 2",
@@ -98,27 +99,68 @@ var a12 = [
 "Answer 4"
 ]
 
+//Array that tracks questions that have not been selected
+var questionsleft = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+//Array that holds correct answers to questions
 var answerarray = [4, 2, 4, 1, 2, 3, 3, 2, 3, 4, 4, 1]
+//Array to reference answer blocks
 var aarray = [a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12]
 
+//Stores status of game
+var currentquestion = 0
+var selectedanswer = 0
+var shufflearray = []
 
-
+//Debug button to move game forward
 $("#startgame").click(function() {
-    var question = randomq()
-    var answer = aarray[question]
-    var shufflearray = shuffleans()
+nextquestion()
+})
 
-    $("#question").text(questionarray[question])
+//click events for answer selection
+$("#answer1").click(function () {
+    selectedanswer = shufflearray[0] +1
+    checkanswer()
+    nextquestion()
+})
+
+$("#answer2").click(function () {
+    selectedanswer = shufflearray[1]+1
+    checkanswer()
+    nextquestion() 
+})
+
+$("#answer3").click(function () {
+    selectedanswer = shufflearray[2]+1
+    checkanswer()
+    nextquestion()    
+})
+
+$("#answer4").click(function () {
+    selectedanswer = shufflearray[3]+1
+    checkanswer()
+    nextquestion()
+})
+
+//Advances game
+function nextquestion() {
+    var rand = randomq()
+    currentquestion = questionsleft[rand]
+    var answer = aarray[currentquestion]
+    shufflearray = shuffleans()
+
+    $("#question").text(questionarray[currentquestion])
     $("#answer1").text(answer[shufflearray[0]])
     $("#answer2").text(answer[shufflearray[1]])
     $("#answer3").text(answer[shufflearray[2]])
     $("#answer4").text(answer[shufflearray[3]])
-})
-
+    questionsleft.splice(rand, 1)
+}
+//RNG for question array
 function randomq() {
-    return Math.floor(Math.random() * answerarray.length)
+    return Math.floor(Math.random() * questionsleft.length)
 }
 
+//Generates random order to display answers
 function shuffleans() {
     var shuffledarrays = [
         [0, 1, 2, 3],
@@ -149,4 +191,16 @@ function shuffleans() {
 
     var randomarray = Math.floor(Math.random()*shuffledarrays.length)
     return shuffledarrays[randomarray]
+}
+
+//Checks if selected answer is correct
+function checkanswer() {
+    if (selectedanswer == answerarray[currentquestion]) {
+        alert("Correct Answer!")
+        return true
+    }
+    else {
+        alert("Wrong Answer!")
+        return false
+    } 
 }
