@@ -1,3 +1,5 @@
+$("body").backstretch("assets/images/BQpp.gif")
+
 //Holds all questions
 var questionarray = [
 "Question 1",
@@ -204,3 +206,70 @@ function checkanswer() {
         return false
     } 
 }
+
+//Intro Sequence Scripts
+function introsequence1()  {
+    $("p1").fadeIn(2000, function() {
+        $("p2").fadeIn(2000, function() {
+            $("p3").fadeIn(2000, function(){
+                setTimeout(function() {
+                $("p1").fadeOut(1000)
+                $("p2").fadeOut(1000)
+                $("p3").fadeOut(1000)
+                }, 3000)
+            })
+        })
+    })
+}
+
+function introsequence2()  {
+    $("#titleimg").fadeIn(2000, function() {
+        $("p4").fadeIn(2000, function() {
+            setTimeout(function() {
+            $("#titleimg").fadeOut(1000)
+            $("p4").fadeOut(1000)
+            }, 6000)
+        })
+    })
+}
+
+function introsequence3()  {
+    $("p5").fadeIn(2000, function() {
+        $("p6").fadeIn(2000, function() {
+            $("p7").fadeIn(2000, function(){
+                $("p8").fadeIn(2000, function(){
+                    setTimeout(function() {
+                    $("p5").fadeOut(1000)
+                    $("p6").fadeOut(1000)
+                    $("p7").fadeOut(1000)
+                    $("p8").fadeOut(1000)
+                    }, 4000)
+                })
+            })
+        })
+    })
+}
+
+var introactive = 0
+
+$("#titleCard").click(function(){
+    if (introactive !=1) {
+        introactive = 1
+        nextquestion()
+        introsequence1()
+        setTimeout(function() {
+            introsequence2()
+        }, 12000)
+        setTimeout(function() {
+            introsequence3()
+        }, 25000)
+        setTimeout(function(){
+            $("#titleCard").fadeOut(2000)
+        }, 40000)
+    }
+})
+
+//Intro skipped if key is pressed
+$('body').keydown(function () {
+    $("#titleCard").fadeOut(2000)
+})

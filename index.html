@@ -7,24 +7,43 @@
         <meta name="Trivia Game" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="assets/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Chelsea+Market|East+Sea+Dokdo|Gamja+Flower|Seaweed+Script|Sunflower:300" rel="stylesheet">
     </head>
     <body>
-        <div id="container">
-            <div id="titleText">My Trivia Game</div>
-
-            <button id="startgame">START GAME</button>
-
-            <div id="question"></div>
-            <div id="answer1"></div>
-            <div id="answer2"></div>
-            <div id="answer3"></div>
-            <div id="answer4"></div>
-
-            <div id="imgdiv"><img id="img"></div>
-
-
+        <div id="titleCard">
+            <div id="card1">
+                <p1 class="hidden">It was a foggy evening.</p1>  
+                <p2 class="hidden">I could feel a plesant breeze blowing through the air.</p2>
+                <p3 class="hidden">But wait, what's that?  Yes, I can just barely see it!</p3>
+            </div>
+            <div id="card2">
+                <div id="titleimgdiv"><img src="assets/images/boatcropped.gif" id="titleimg" class="hidden"></div>
+                <p4 class="hidden">A vessel heading dangerously close to shore!</p4>
+            </div>
+            <div id="card3">
+                <p5 class="hidden">And it gets worse -- the lighthouse has gone out!</p5>
+                <p6 class="hidden">A crash is imminent!</p6>
+                <p7 class="hidden">Answer <span id="span">Ten</span> lighthouse trivia questions in <span id="span">200 Seconds!</span></p7> 
+                <p8 class="hidden">Repair the lighthouse and prevent a disaster!</p8>
+            </div>
         </div>
+            <div id="bodycontainer">    
+                <div id="container">
+                    <div id="titleText">Lighthouse Trivia</div>
+                    <button class="hidden" id="startgame">START GAME</button>
+                    <div id="triviadiv">
+                        <div id="question"></div>
+                        <div id="answer1"></div>
+                        <div id="answer2"></div>
+                        <div id="answer3"></div>
+                        <div id="answer4"></div>
+                    </div>
+                </div>
+            <div id="imgdiv" class="hidden"><img id="img"></div>
+            </div>
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
         <script src="assets/javascript/apps.js"></script>
     </body>
 </html>
