@@ -2,111 +2,152 @@ $("body").backstretch("assets/images/BQpp.gif")
 
 //Holds all questions
 var questionarray = [
-"Question 1",
-"Question 2",
-"Question 3",
-"Question 4",
-"Question 5",
-"Question 6",
-"Question 7",
-"Question 8",
-"Question 9",
-"Question 10",
-"Question 11",
-"Question 12"
+"Where was the first known lighthouse located?",
+"What is the oldest existing lighthouse in the world?",
+"Where was the first lighthouse in the USA built?",
+"Where was the first lighthouse, owned, and operated by the federal government, built in the USA?",
+"Where is the tallest lighthouse in the USA located?",
+"Which state in the USA currently has the most lighthouses?",
+"True or False:  Lighthouse keeping was limited to men-only until the 1960s because it was considered too dangerous.",
+"What was the first lighthouse in the USA to be lit by an electricity?",
+"Where is the most powerful lighthouse in the USA?",
+"Lighthouses are constructed from all of the following materials except:",
+"How many keepers does a lighthouse typically have?",
+"What is the maximum range of a lighthouse light at sea level?",
+"True or False:  Every lighthouse currently in operation in the United States is automated.",
+"Where is the oldest currently active lighthouse in the United States?",
+"Where is the newest lighthouse in the USA?",
+"Which American lighthouse was the most expensive to build?",
+"Which lighthouse was the tallest and largest ever built?"
 ]
 
 //Holds possible answers for each question
 var a1 = [
-"Answer 1",
-"Answer 2",
-"Answer 3",
-"Answer 4q"
+"Egypt",
+"Greece",
+"Spain",
+"Rome"
 ]
 
 var a2 = [
-"Answer 1",
-"Answer 2q",
-"Answer 3",
-"Answer 4"
+"La Coruna, in Spain",
+"Boston Light, in Massachusetts",
+"Eddystone Lighthouse, in England",
+"Cordouan Lighthouse, in France"
 ]
 
 var a3 = [
-"Answer 1",
-"Answer 2",
-"Answer 3",
-"Answer 4q"
+"Boston, Massachusetts",
+"New York, New York",
+"Philadelphia, Pennsylvania",
+"Baltimore, Maryland"
 ]
 
 var a4 = [
-"Answer 1q",
-"Answer 2",
-"Answer 3",
-"Answer 4"
+"Sandy Hook, New Jersey",
+"Baltimore, Maryland",
+"Erie, Pennsylvania",
+"Cape Henry, Virginia"
 ]
 
 var a5 = [
-"Answer 1",
-"Answer 2q",
-"Answer 3",
-"Answer 4"
+"Cape Hatteras, North Carolina",
+"Alcatraz Island, California",
+"Baltimore, Maryland",
+"Philadelphia, Pennsylvania"
 ]
 
 var a6= [
-"Answer 1",
-"Answer 2",
-"Answer 3q",
-"Answer 4"
+"Michigan",
+"Massachusetts",
+"Maryland",
+"North Carolina"
 ]
 
 var a7 = [
-"Answer 1",
-"Answer 2",
-"Answer 3q",
-"Answer 4"
+"True",
+"False",
+"{}",
+"{}"
 ]
 
 var a8 = [
-"Answer 1",
-"Answer 2q",
-"Answer 3",
-"Answer 4"
+"Ellis Island, New York",
+"Baltimore, Maryland",
+"Sandy Hook, New Jersey",
+"Philadelphia, Pennsylvania"
 ]
 
 var a9 = [
-"Answer 1",
-"Answer 2",
-"Answer 3q",
-"Answer 4"
+"Charleston, South Carolina",
+"Sandy Hook, New Jersey",
+"Cape Henry, Virginia",
+"Erie, Pennsylvania"
 ]
 
 var a10 = [
-"Answer 1",
-"Answer 2",
-"Answer 3",
-"Answer 4q"
+"Aluminum",
+"Brick",
+"Concrete",
+"Fiberglass"
 ]
 
 var a11 = [
-"Answer 1",
-"Answer 2",
-"Answer 3",
-"Answer 4q"
+"1-5",
+"6-10",
+"11-15",
+"15-30"
 ]
 
 var a12 = [
-"Answer 1q",
-"Answer 2",
-"Answer 3",
-"Answer 4"
+"18.4 miles",
+"12.9 miles",
+"8.7 miles",
+"28.2 miles"
 ]
+
+var a13 = [
+"True",
+"False",
+"{}",
+"{}"
+]
+
+var a14 = [
+"Sandy Hook, New Jersey",
+"Cape Henry, Virginia",
+"New York, New York",
+"Baltimore, Maryland"
+]
+
+var a15 = [
+"Baltimore, Maryland",
+"Alcatraz Island, California",
+"Erie, Pennsylvania",
+"Sullivans Island, South Carolina"
+]
+
+var a16 = [
+"Cape Hatteras",
+"Minot's Ledge",
+"Boston Harbor",
+"St. Geroge's Reef"
+]
+
+var a17 = [
+"Cape Hatteras Lighthouse",
+"Pharos of Alexandria",
+"St. Georges Reef Lighthouse",
+"Portland Head Lighthouse"
+]
+
 
 //Array that tracks questions that have not been selected
 var questionsleft = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 //Array that holds correct answers to questions
-var answerarray = [4, 2, 4, 1, 2, 3, 3, 2, 3, 4, 4, 1]
+var answerarray = [1, 1, 1, 4, 1, 1, 2, 1, 1, 4, 1, 1, 2, 1, 4, 4, 2]
 //Array to reference answer blocks
-var aarray = [a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12]
+var aarray = [a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17]
 
 //Stores status of game
 var currentquestion = 0

@@ -113,7 +113,7 @@ All *but one* lighthouses in the United States are automated.  Because Boston Li
 
 14)  Where is the oldest currently active lighthouse in the United States?
 
-Sandy Hook, New Jersey
+Sandy Hook, New Jersey --
 Cape Henry, Virginia
 New York, New York
 Baltimore, Maryland
