@@ -240,6 +240,7 @@ function shuffleans() {
 function checkanswer() {
     if (selectedanswer == answerarray[currentquestion]) {
         alert("Correct Answer!")
+        facts()
         return true
     }
     else {
@@ -247,6 +248,18 @@ function checkanswer() {
         return false
     } 
 }
+
+
+//Facts screen
+function facts() {
+    $("#triviadiv").fadeOut(1000)
+    $("#answerimagediv").fadeIn(1000)
+    $("#correctnotify").fadeIn(1000)
+    $("#facts").fadeIn(1000)
+
+}
+
+
 
 //Intro Sequence Scripts
 function introsequence1()  {
