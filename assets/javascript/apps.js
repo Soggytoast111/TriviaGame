@@ -255,6 +255,9 @@ function facts() {
     $("#triviadiv").fadeOut(1000)
     $("#answerimagediv").fadeIn(1000)
     $("#correctnotify").fadeIn(1000)
+    $("#answerimage").attr("src", "assets/images/answerfacts/1(uncrop).jpg")
+    
+    
     $("#facts").fadeIn(1000)
 
 }
