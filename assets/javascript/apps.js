@@ -67,8 +67,8 @@ var a6= [
 var a7 = [
 "True",
 "False",
-"{}",
-"{}"
+" ",
+" "
 ]
 
 var a8 = [
@@ -109,8 +109,8 @@ var a12 = [
 var a13 = [
 "True",
 "False",
-"{}",
-"{}"
+" ",
+" "
 ]
 
 var a14 = [
@@ -173,6 +173,7 @@ $("#answer1").click(function () {
     blurarray[3].attr("class", "incorrectanswer")
 
     blurarray[shufflearray.indexOf(answerarray[currentquestion]-1)].removeAttr("class")
+    stoptime()
     checkanswer()
     active =2}
     //nextquestion()
@@ -187,6 +188,7 @@ $("#answer2").click(function () {
     blurarray[3].attr("class", "incorrectanswer")
 
     blurarray[shufflearray.indexOf(answerarray[currentquestion]-1)].removeAttr("class")
+    stoptime()
     checkanswer()
     active = 2}
     //nextquestion() 
@@ -201,6 +203,7 @@ $("#answer3").click(function () {
     blurarray[3].attr("class", "incorrectanswer")
 
     blurarray[shufflearray.indexOf(answerarray[currentquestion]-1)].removeAttr("class")
+    stoptime()
     checkanswer()
     active = 2}
     //nextquestion()    
@@ -215,6 +218,7 @@ $("#answer4").click(function () {
     blurarray[3].attr("class", "incorrectanswer")
 
     blurarray[shufflearray.indexOf(answerarray[currentquestion]-1)].removeAttr("class")
+    stoptime()
     checkanswer()
     active = 2}
     //nextquestion()
@@ -226,6 +230,7 @@ function nextquestion() {
     blurarray[1].removeAttr("class")
     blurarray[2].removeAttr("class")
     blurarray[3].removeAttr("class")
+    intervalTimer()
     active = 1
     var rand = randomq()
     currentquestion = questionsleft[rand]
@@ -286,6 +291,7 @@ function checkanswer() {
         setTimeout(function() {facts()}, 3000)
         $("#sounds").attr("src", "assets/sounds/bells.mp3")
         document.getElementById("sounds").play()
+        scorecorrect++
         return true
     }
     else {
@@ -294,6 +300,7 @@ function checkanswer() {
         setTimeout(function() {facts()}, 3000)
         $("#sounds").attr("src", "assets/sounds/foghorn.mp3")
         document.getElementById("sounds").play()
+        scoreincorrect++
         return false
     } 
 }
@@ -420,6 +427,29 @@ $('body').keydown(function () {
 })
 
 
+//Timer functions
+var timercount = 200
+var timerset = 0
+var setinterval = function () {setInterval(function() {timer()}, 1000)}
+
+function intervalTimer() {
+    if (timerset == 0){
+    timerset = 1
+    setinterval
+    }
+}
+
+function timer() {
+    $("#timerdiv").text("Time remaining:  " + timercount + " seconds" )
+    timercount = timercount -1
+}
+
+function stoptime() {
+    timerset = 0
+    clearInterval(setinterval)
+}
+
+//Answer facts in Array
 var answertext = [
     "The Great Lighthouse at Alexandria was built around 280 BC. It was destroyed by invaders and earthquakes in the 1300s.",
     "The La Coruna Lighthouse was was built in 20 BC!",
@@ -439,3 +469,6 @@ var answertext = [
     "The St. George's Reef Lighthouse, in California, took 10 years to construct, at a cost of $715,000.",
     "The Pharos of Alexandria, built in about 280 B.C. is considered one of the Seven Wonders of the Ancient World.  It was estimated to be over 330 feet tall.  Unfortunately it was badly damaged by earthquakes between AD 956 and 1323, and became an abandoned ruin.", 
 ]
+
+var scorecorrect = 0
+var scoreincorrect = 0
