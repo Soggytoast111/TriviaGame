@@ -116,9 +116,9 @@ p1, p2, p3, p4, p5, p6, p7, p8{
 }
 
 #span {
-    color: blue;
+    text-decoration: underline;
     font-style: bold;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
 }
 
 #titleimg{
@@ -132,7 +132,6 @@ p1, p2, p3, p4, p5, p6, p7, p8{
     display: none;
     height: 300px;
     width: 300px;
-    background-color: red;
     position: absolute;
     left: 50px;
     top: 240px;
@@ -142,18 +141,17 @@ p1, p2, p3, p4, p5, p6, p7, p8{
     display: none;
     height: 60px;
     width: 400px;
-    background-color: blue;
     position: absolute;
-    left: 225px;
-    top: 125px;
-
+    left: 325px;
+    top: 95px;
+    color: red;
+    font-size: 70px;
 }
 
 #facts {
     display: none;
     height: 300px;
     width: 400px;
-    background-color: green;
     position: absolute;
     right:  50px;
     top: 240px;
@@ -162,5 +160,21 @@ p1, p2, p3, p4, p5, p6, p7, p8{
 
 #answerimage {
     opacity: 1;
+
+}
+
+#answerdiv {
+    height: 900px;
+    width: 900px;
+}
+
+.incorrectanswer {
+    filter: grayscale(70%);
+    filter: blur(3px);
+}
+
+#facts {
+    font-size: 28px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
 }

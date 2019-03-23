@@ -143,11 +143,15 @@ var a17 = [
 
 
 //Array that tracks questions that have not been selected
-var questionsleft = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+var questionsleft = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 //Array that holds correct answers to questions
 var answerarray = [1, 1, 1, 4, 1, 1, 2, 1, 1, 4, 1, 1, 2, 1, 4, 4, 2]
 //Array to reference answer blocks
 var aarray = [a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17]
+
+var blurarray = [$("#answer1"), $("#answer2"), $("#answer3"), $("#answer4")] 
+
+var active = 0
 
 //Stores status of game
 var currentquestion = 0
@@ -161,31 +165,68 @@ nextquestion()
 
 //click events for answer selection
 $("#answer1").click(function () {
+    if (active == 1) {
     selectedanswer = shufflearray[0] +1
+    blurarray[0].attr("class", "incorrectanswer")
+    blurarray[1].attr("class", "incorrectanswer")
+    blurarray[2].attr("class", "incorrectanswer")
+    blurarray[3].attr("class", "incorrectanswer")
+
+    blurarray[shufflearray.indexOf(answerarray[currentquestion]-1)].removeAttr("class")
     checkanswer()
-    nextquestion()
+    active =2}
+    //nextquestion()
 })
 
 $("#answer2").click(function () {
+    if (active == 1) {
     selectedanswer = shufflearray[1]+1
+    blurarray[0].attr("class", "incorrectanswer")
+    blurarray[1].attr("class", "incorrectanswer")
+    blurarray[2].attr("class", "incorrectanswer")
+    blurarray[3].attr("class", "incorrectanswer")
+
+    blurarray[shufflearray.indexOf(answerarray[currentquestion]-1)].removeAttr("class")
     checkanswer()
-    nextquestion() 
+    active = 2}
+    //nextquestion() 
 })
 
 $("#answer3").click(function () {
+    if (active == 1) {
     selectedanswer = shufflearray[2]+1
+    blurarray[0].attr("class", "incorrectanswer")
+    blurarray[1].attr("class", "incorrectanswer")
+    blurarray[2].attr("class", "incorrectanswer")
+    blurarray[3].attr("class", "incorrectanswer")
+
+    blurarray[shufflearray.indexOf(answerarray[currentquestion]-1)].removeAttr("class")
     checkanswer()
-    nextquestion()    
+    active = 2}
+    //nextquestion()    
 })
 
 $("#answer4").click(function () {
+    if (active == 1) {
     selectedanswer = shufflearray[3]+1
+    blurarray[0].attr("class", "incorrectanswer")
+    blurarray[1].attr("class", "incorrectanswer")
+    blurarray[2].attr("class", "incorrectanswer")
+    blurarray[3].attr("class", "incorrectanswer")
+
+    blurarray[shufflearray.indexOf(answerarray[currentquestion]-1)].removeAttr("class")
     checkanswer()
-    nextquestion()
+    active = 2}
+    //nextquestion()
 })
 
 //Advances game
 function nextquestion() {
+    blurarray[0].removeAttr("class")
+    blurarray[1].removeAttr("class")
+    blurarray[2].removeAttr("class")
+    blurarray[3].removeAttr("class")
+    active = 1
     var rand = randomq()
     currentquestion = questionsleft[rand]
     var answer = aarray[currentquestion]
@@ -238,30 +279,71 @@ function shuffleans() {
 
 //Checks if selected answer is correct
 function checkanswer() {
+
     if (selectedanswer == answerarray[currentquestion]) {
-        alert("Correct Answer!")
-        facts()
+        $("#correctnotify").text("Correct!")
+        $("#correctnotify").fadeIn(500)
+        setTimeout(function() {facts()}, 3000)
+        $("#sounds").attr("src", "assets/sounds/bells.mp3")
+        document.getElementById("sounds").play()
         return true
     }
     else {
-        alert("Wrong Answer!")
+        $("#correctnotify").text("Incorrect!")
+        $("#correctnotify").fadeIn(500)
+        setTimeout(function() {facts()}, 3000)
+        $("#sounds").attr("src", "assets/sounds/foghorn.mp3")
+        document.getElementById("sounds").play()
         return false
     } 
 }
 
-
 //Facts screen
+var answerimg = [
+    "assets/images/answerfacts/Crop/1.png",
+    "assets/images/answerfacts/Crop/2.png",
+    "assets/images/answerfacts/Crop/3.png",
+    "assets/images/answerfacts/Crop/4.jpg",
+    "assets/images/answerfacts/Crop/5.png",
+    "assets/images/answerfacts/Crop/6.png",
+    "assets/images/answerfacts/Crop/7.jpg",
+    "assets/images/answerfacts/Crop/8.png",
+    "assets/images/answerfacts/Crop/9.png",
+    "assets/images/answerfacts/Crop/10.png",
+    "assets/images/answerfacts/Crop/11.png",
+    "assets/images/answerfacts/Crop/12.jpg",
+    "assets/images/answerfacts/Crop/13.png",
+    "assets/images/answerfacts/Crop/14.png",
+    "assets/images/answerfacts/Crop/15.png",
+    "assets/images/answerfacts/Crop/16.jpg",
+    "assets/images/answerfacts/Crop/17.png"
+]
+
+
 function facts() {
+    
     $("#triviadiv").fadeOut(1000)
     $("#answerimagediv").fadeIn(1000)
     $("#correctnotify").fadeIn(1000)
-    $("#answerimage").attr("src", "assets/images/answerfacts/1(uncrop).jpg")
+    $("#answerdiv").fadeIn(1000)
+    $("#answerimage").attr("src", answerimg[currentquestion])
+    $("#facts").text(answertext[currentquestion]) 
     
     
     $("#facts").fadeIn(1000)
+    }
 
-}
-
+    $("#answerdiv").click(function() {
+        
+        $("#answerimagediv").fadeOut(1000)
+        $("#correctnotify").fadeOut(1000)
+        $("#facts").fadeOut(1000, function() {
+            if (active = 2) {
+            nextquestion()
+            $("#triviadiv").fadeIn(500)
+            $("#answerdiv").fadeOut(1000)
+        }})
+})
 
 
 //Intro Sequence Scripts
@@ -273,6 +355,8 @@ function introsequence1()  {
                 $("p1").fadeOut(1000)
                 $("p2").fadeOut(1000)
                 $("p3").fadeOut(1000)
+                $("#sounds").attr("src", "assets/sounds/foghorn.mp3")
+                setTimeout(function() {document.getElementById("sounds").play()}, 2000)
                 }, 3000)
             })
         })
@@ -308,9 +392,13 @@ function introsequence3()  {
 }
 
 var introactive = 0
-
+var musicon = 0
 $("#titleCard").click(function(){
     if (introactive !=1) {
+        if (musicon == 0) {
+            musicon = 1
+            document.getElementById("backgroundwave").play()
+        }
         introactive = 1
         nextquestion()
         introsequence1()
@@ -330,3 +418,24 @@ $("#titleCard").click(function(){
 $('body').keydown(function () {
     $("#titleCard").fadeOut(2000)
 })
+
+
+var answertext = [
+    "The Great Lighthouse at Alexandria was built around 280 BC. It was destroyed by invaders and earthquakes in the 1300s.",
+    "The La Coruna Lighthouse was was built in 20 BC!",
+    "Boston Light, the first lighthouse in America, was built in Boston on Little Brewster Island in 1716.  The original tower was destroyed by the British and eventually reconstructed in 1784.",
+    "The Cape Henry Lighthouse is the first federally funded public works project of the newly formed United States government. It was authorized by George Washington and overseen by Alexander Hamilton.",
+    "The lighthouse at Cape Hatteras was moved and rebuilt in 1870.  The original tower only stood at 90 feet high, however, after the expansion it became 196 feet tall!",
+    "Michigan currently has the most with 124 lighthouses.",
+    "Lighthouse keeping was one of the first U.S. government jobs available to women in the 19th century.  The majority of women lighthouse keepers saved lives, not only indirectly by keeping their lamps and fog horns operating, but also directly by rescuing people from the treacherous waters of the Great Lakes. They took their job very seriously and rose to the challenges of lighthouse keeping with strength and determination.",
+    "The first American lighthouse to use electricity was the Statue of Liberty in 1886.",
+    "The most powerful lighthouse in the Western Hemisphere is the Sullivan Island Light in Charleston, SC.  It originally had 28 million candelas (candlepower) but the light was actually too dazzling and  the power was lowered to 1.2 million candelas.  It could still be seen over 26 nautical miles (48 km; 30 mi)",
+    "Lighthouse depots were built around the country to service lighthouses. All supplies were shipped to the lighthouse depots from where the supplies were shipped to the various lighthouses. The largest lighthouse depot was on Staten Island, New York.",
+    "Only one to five keepers will man a light station.  It is a very important job that is much revered by seafaring captains and crew.",
+    "While the intensity of the light can vary greatly depending on the weather and atmospheric conditions, the maximum range at sea level is limited by the curvature of the Earth.",
+    "All *but one* lighthouses in the United States are automated.  Because Boston Light is the oldest station in the United States, Congress has declared that this lighthouse always be a staffed station. ",
+    "It was first lit in 1764 - it remains active to this day.",
+    "The newest U.S. lighthouse is the Charleston Light on Sullivans Island, South Carolina, completed in 1962.",
+    "The St. George's Reef Lighthouse, in California, took 10 years to construct, at a cost of $715,000.",
+    "The Pharos of Alexandria, built in about 280 B.C. is considered one of the Seven Wonders of the Ancient World.  It was estimated to be over 330 feet tall.  Unfortunately it was badly damaged by earthquakes between AD 956 and 1323, and became an abandoned ruin.", 
+]
