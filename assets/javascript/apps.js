@@ -292,6 +292,7 @@ function checkanswer() {
         $("#sounds").attr("src", "assets/sounds/bells.mp3")
         document.getElementById("sounds").play()
         scorecorrect++
+        $("correctcount").text("Correct:  "+ scorecorrect)
         return true
     }
     else {
@@ -301,6 +302,7 @@ function checkanswer() {
         $("#sounds").attr("src", "assets/sounds/foghorn.mp3")
         document.getElementById("sounds").play()
         scoreincorrect++
+        $("incorrectcount").text("Correct:  "+ scoreincorrect)
         return false
     } 
 }
@@ -430,14 +432,15 @@ $('body').keydown(function () {
 //Timer functions
 var timercount = 200
 var timerset = 0
-var setinterval = function () {setInterval(function() {timer()}, 1000)}
+var interval = 0
 
 function intervalTimer() {
     if (timerset == 0){
     timerset = 1
-    setinterval
+    interval = setInterval(function() {timer()}, 1000)}
+    console.log(interval)
     }
-}
+
 
 function timer() {
     $("#timerdiv").text("Time remaining:  " + timercount + " seconds" )
@@ -446,7 +449,7 @@ function timer() {
 
 function stoptime() {
     timerset = 0
-    clearInterval(setinterval)
+    clearInterval(interval)
 }
 
 //Answer facts in Array
