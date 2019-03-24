@@ -292,7 +292,18 @@ function checkanswer() {
         $("#sounds").attr("src", "assets/sounds/bells.mp3")
         document.getElementById("sounds").play()
         scorecorrect++
-        $("correctcount").text("Correct:  "+ scorecorrect)
+        $("#correctcount").text("Correct:  " + scorecorrect)
+        if (scorecorrect == 8){
+            $("#triviadiv").fadeOut(1000)
+            setTimeout(function(){$("#correctnotify").fadeOut(1000)}, 6000)
+            $("#finalpage").fadeIn(1000)
+            $("#answerdiv").fadeOut(1000)
+            $("#finaltext2").text("Congratulations!")
+            $("#finalpic").attr("src", "assets/images/success.png")
+            $("#finaltext3").html("You Win!")
+            $("#finaltext").html("Correct:  " + scorecorrect + "<br>"
+                                +"Incorrect:  " + scoreincorrect)
+        }
         return true
     }
     else {
@@ -302,7 +313,20 @@ function checkanswer() {
         $("#sounds").attr("src", "assets/sounds/foghorn.mp3")
         document.getElementById("sounds").play()
         scoreincorrect++
-        $("incorrectcount").text("Correct:  "+ scoreincorrect)
+        $("#incorrectcount").text("Incorrect:  " + scoreincorrect)
+        if (scoreincorrect == 3){
+            $("#triviadiv").fadeOut(1000)
+            setTimeout(function(){$("#correctnotify").fadeOut(1000)}, 2000)
+            setTimeout(function(){$("#correctnotify").fadeOut(1000)}, 6000)
+            setTimeout(function() {$("#answerdiv").fadeOut(3000)}, 4000)
+            $("#finalpage").fadeIn(1000)
+            $("#finaltext2").text("Oh no!")
+            $("#finalpic").attr("src", "assets/images/failure.jpg")
+            $("#finaltext3").html("Out of Guesses <br> Try again!")
+            $("#finaltext").html("Correct:  " + scorecorrect + "<br>"
+                                +"Incorrect:  " + scoreincorrect)
+
+        }
         return false
     } 
 }
@@ -430,26 +454,35 @@ $('body').keydown(function () {
 
 
 //Timer functions
-var timercount = 200
+var timercount = 90
 var timerset = 0
-var interval = 0
+var setinterval = 0
 
 function intervalTimer() {
     if (timerset == 0){
     timerset = 1
-    interval = setInterval(function() {timer()}, 1000)}
-    console.log(interval)
+    setinterval = setInterval(function() {timer()}, 1000)
     }
-
+}
 
 function timer() {
     $("#timerdiv").text("Time remaining:  " + timercount + " seconds" )
     timercount = timercount -1
+    if (timercount <= 0){
+        $("#triviadiv").fadeOut(1000)
+        $("#correctnotify").fadeOut(1000)
+        $("#finalpage").fadeIn(1000)
+        $("#finaltext2").text("Oh no!")
+        $("#finalpic").attr("src", "assets/images/failure.jpg")
+        $("#finaltext3").html("Time Over <br> Try again!")
+        $("#finaltext").html("Correct:  " + scorecorrect + "<br>"
+                            +"Incorrect:  " + scoreincorrect)
+    }
 }
 
 function stoptime() {
     timerset = 0
-    clearInterval(interval)
+    clearInterval(setinterval)
 }
 
 //Answer facts in Array
@@ -475,3 +508,27 @@ var answertext = [
 
 var scorecorrect = 0
 var scoreincorrect = 0
+
+$("#finalpage").click(function() {
+    setTimeout(function() {reset()}, 1000)
+})
+
+function reset() {
+scorecorrect=0
+scoreincorrect=0
+timercount = 55
+timerset = 0
+setinterval = 0
+questionsleft = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+answerarray = [1, 1, 1, 4, 1, 1, 2, 1, 1, 4, 1, 1, 2, 1, 4, 4, 2]
+aarray = [a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17]
+active = 0
+currentquestion = 0
+selectedanswer = 0
+shufflearray = []
+$("#finalpage").fadeOut(1000)
+$("#triviadiv").fadeIn(1000)
+$("#correctcount").text("Correct:  0")
+$("#incorrectcount").text("Incorrect:  0")
+nextquestion()
+}
