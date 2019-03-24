@@ -9,7 +9,7 @@ var questionarray = [
 "Where is the tallest lighthouse in the USA located?",
 "Which state in the USA currently has the most lighthouses?",
 "True or False:  Lighthouse keeping was limited to men-only until the 1960s because it was considered too dangerous.",
-"What was the first lighthouse in the USA to be lit by an electricity?",
+"What was the first lighthouse in the USA to be lit by electricity?",
 "Where is the most powerful lighthouse in the USA?",
 "Lighthouses are constructed from all of the following materials except:",
 "How many keepers does a lighthouse typically have?",
@@ -316,9 +316,10 @@ function checkanswer() {
         $("#incorrectcount").text("Incorrect:  " + scoreincorrect)
         if (scoreincorrect == 3){
             $("#triviadiv").fadeOut(1000)
-            setTimeout(function(){$("#correctnotify").fadeOut(1000)}, 2000)
-            setTimeout(function(){$("#correctnotify").fadeOut(1000)}, 6000)
-            setTimeout(function() {$("#answerdiv").fadeOut(3000)}, 4000)
+            $("#answerdiv").hide()
+            setTimeout(function(){$("#correctnotify").hide()}, 2000)
+            setTimeout(function(){$("#correctnotify").hide()}, 3000)
+            setTimeout(function() {$("#answerdiv").hide()}, 3000)
             $("#finalpage").fadeIn(1000)
             $("#finaltext2").text("Oh no!")
             $("#finalpic").attr("src", "assets/images/failure.jpg")
@@ -428,6 +429,7 @@ var introactive = 0
 var musicon = 0
 $("#titleCard").click(function(){
     if (introactive !=1) {
+        $("#clickme").hide()
         if (musicon == 0) {
             musicon = 1
             document.getElementById("backgroundwave").play()
@@ -514,10 +516,10 @@ $("#finalpage").click(function() {
 })
 
 function reset() {
+timerset=1
 scorecorrect=0
 scoreincorrect=0
 timercount = 55
-timerset = 0
 setinterval = 0
 questionsleft = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 answerarray = [1, 1, 1, 4, 1, 1, 2, 1, 1, 4, 1, 1, 2, 1, 4, 4, 2]
