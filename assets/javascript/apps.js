@@ -293,20 +293,6 @@ function checkanswer() {
         document.getElementById("sounds").play()
         scorecorrect++
         $("#correctcount").text("Correct:  " + scorecorrect)
-        if (scorecorrect == 8){
-            $("#triviadiv").fadeOut(1000)
-            $("#answerdiv").hide()
-            setTimeout(function(){$("#correctnotify").hide()}, 2000)
-            setTimeout(function(){$("#correctnotify").hide()}, 5000)
-            setTimeout(function() {$("#answerdiv").hide()}, 3000)
-            $("#finalpage").fadeIn(1000)
-            $("#answerdiv").fadeOut(1000)
-            $("#finaltext2").text("Congratulations!")
-            $("#finalpic").attr("src", "assets/images/success.png")
-            $("#finaltext3").html("You Win!")
-            $("#finaltext").html("Correct:  " + scorecorrect + "<br>"
-                                +"Incorrect:  " + scoreincorrect)
-        }
         return true
     }
     else {
@@ -317,20 +303,6 @@ function checkanswer() {
         document.getElementById("sounds").play()
         scoreincorrect++
         $("#incorrectcount").text("Incorrect:  " + scoreincorrect)
-        if (scoreincorrect == 3){
-            $("#triviadiv").fadeOut(1000)
-            $("#answerdiv").hide()
-            setTimeout(function(){$("#correctnotify").hide()}, 2000)
-            setTimeout(function(){$("#correctnotify").hide()}, 5000)
-            setTimeout(function() {$("#answerdiv").hide()}, 3000)
-            $("#finalpage").fadeIn(1000)
-            $("#finaltext2").text("Oh no!")
-            $("#finalpic").attr("src", "assets/images/failure.jpg")
-            $("#finaltext3").html("Out of Guesses <br> Try again!")
-            $("#finaltext").html("Correct:  " + scorecorrect + "<br>"
-                                +"Incorrect:  " + scoreincorrect)
-
-        }
         return false
     } 
 }
@@ -358,20 +330,53 @@ var answerimg = [
 
 
 function facts() {
-    
     $("#triviadiv").fadeOut(1000)
     $("#answerimagediv").fadeIn(1000)
     $("#correctnotify").fadeIn(1000)
     $("#answerdiv").fadeIn(1000)
     $("#answerimage").attr("src", answerimg[currentquestion])
     $("#facts").text(answertext[currentquestion]) 
-    
-    
     $("#facts").fadeIn(1000)
+}
+
+$("#answerdiv").click(function() {
+    if (scorecorrect == 8){
+        $("#triviadiv").fadeOut(1000)
+        $("#answerdiv").fadeOut(1000)
+        $("#correctnotify").fadeOut(1000)
+        $("#finalpage").fadeIn(1000)
+        $("#finaltext2").text("Congratulations!")
+        $("#finalpic").attr("src", "assets/images/success.png")
+        $("#finaltext3").html("You Win!")
+        $("#finaltext").html("Correct:  " + scorecorrect + "<br>"
+                            +"Incorrect:  " + scoreincorrect)
     }
 
-    $("#answerdiv").click(function() {
-        
+    else if (scoreincorrect == 3){
+        $("#triviadiv").fadeOut(1000)
+        $("#answerdiv").fadeOut(1000)
+        $("#correctnotify").fadeOut(1000)
+        $("#finalpage").fadeIn(1000)
+        $("#finaltext2").html("Oh no!")
+        $("#finalpic").attr("src", "assets/images/failure.jpg")
+        $("#finaltext3").html("Out of Guesses! <br> Try again!")
+        $("#finaltext").html("Correct:  " + scorecorrect + "<br>"
+                            +"Incorrect:  " + scoreincorrect)
+    }
+
+    else if (timercount <= 0){
+        $("#triviadiv").fadeOut(1000)
+        $("#answerdiv").fadeOut(1000)
+        $("#correctnotify").fadeOut(1000)
+        $("#finalpage").fadeIn(1000)
+        $("#finaltext2").html("Oh no!")
+        $("#finalpic").attr("src", "assets/images/failure.jpg")
+        $("#finaltext3").html("Time over! <br> Try again!")
+        $("#finaltext").html("Correct:  " + scorecorrect + "<br>"
+                            +"Incorrect:  " + scoreincorrect)
+    }
+    
+    else {
         $("#answerimagediv").fadeOut(1000)
         $("#correctnotify").fadeOut(1000)
         $("#facts").fadeOut(1000, function() {
@@ -379,7 +384,9 @@ function facts() {
             nextquestion()
             $("#triviadiv").fadeIn(500)
             $("#answerdiv").fadeOut(1000)
-        }})
+            }
+        })
+    }
 })
 
 
@@ -474,14 +481,8 @@ function timer() {
     $("#timerdiv").text("Time remaining:  " + timercount + " seconds" )
     timercount = timercount -1
     if (timercount <= 0){
-        $("#triviadiv").fadeOut(1000)
-        $("#correctnotify").fadeOut(1000)
-        $("#finalpage").fadeIn(1000)
-        $("#finaltext2").text("Oh no!")
-        $("#finalpic").attr("src", "assets/images/failure.jpg")
-        $("#finaltext3").html("Time Over <br> Try again!")
-        $("#finaltext").html("Correct:  " + scorecorrect + "<br>"
-                            +"Incorrect:  " + scoreincorrect)
+        $("#timerdiv").text("Time remaining: Out of Time!" )
+        stoptime()
     }
 }
 
@@ -535,5 +536,6 @@ $("#finalpage").fadeOut(1000)
 $("#triviadiv").fadeIn(1000)
 $("#correctcount").text("Correct:  0")
 $("#incorrectcount").text("Incorrect:  0")
+$("#timerdiv").text("Get Ready!" )
 nextquestion()
 }

@@ -109,7 +109,7 @@ While the intensity of the light can vary greatly depending on the weather and a
 True 
 False --
 
-All *but one* lighthouses in the United States are automated.  Because Boston Light is the oldest station in the United States, Congress has declared that this lighthouse always be a staffed station. 
+All *but one* lighthouse in the United States are automated.  Because Boston Light is the oldest station in the United States, Congress has declared that this lighthouse always be a staffed, as per tradition. 
 
 14)  Where is the oldest currently active lighthouse in the United States?
 
